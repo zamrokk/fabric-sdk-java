@@ -53,7 +53,7 @@ public class Event {
 	}
 
 	/**
-	 * Can be called in before_<EVENT> or leave_<STATE> to cancel the
+	 * Can be called in before_EVENT or leave_STATE to cancel the
 	 * current transition before it happens. It takes an optional error,
 	 * which will overwrite the event's error if it had already been set.
 	 */
@@ -66,7 +66,7 @@ public class Event {
 	}
 
 	/**
-	 * Can be called in leave_<STATE> to do an asynchronous state transition.
+	 * Can be called in leave_STATE to do an asynchronous state transition.
 	 * The current state transition will be on hold in the old state until a final
 	 * call to Transition is made. This will complete the transition and possibly
 	 * call the other callbacks.

@@ -24,25 +24,25 @@ public interface MemberServices {
 
     /**
      * Get the security level
-     * @returns The security level
+     * @return The security level
      */
     int getSecurityLevel();
 
     /**
      * Set the security level
-     * @params securityLevel The security level
+     * @param securityLevel The security level
      */
     void setSecurityLevel(int securityLevel);
 
     /**
      * Get the hash algorithm
-     * @returns The security level
+     * @return The security level
      */
     String getHashAlgorithm();
 
     /**
      * Set the security level
-     * @params securityLevel The security level
+     * @param hashAlgorithm The security level
      */
     void setHashAlgorithm(String hashAlgorithm);
 

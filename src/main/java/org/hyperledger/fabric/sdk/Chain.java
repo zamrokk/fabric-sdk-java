@@ -84,7 +84,7 @@ public class Chain {
 
     /**
      * Get the chain name
-     * @returns The name of the chain
+     * @return The name of the chain
      */
     public String getName() {
         return this.name;
@@ -93,8 +93,8 @@ public class Chain {
     /**
      * Add a peer given an endpoint specification.
      * @param url URL of the peer
-     * @param pem
-     * @returns a new peer.
+     * @param pem permission
+     * @return a new peer.
      */
     public Peer addPeer(String url, String pem) {
         Peer peer = new Peer(url, pem, this);
@@ -104,6 +104,7 @@ public class Chain {
 
     /**
      * Get the peers for this chain.
+     * @return
      */
     public Vector<Peer> getPeers() {
         return this.peers;
@@ -128,8 +129,8 @@ public class Chain {
     /**
      * Set the member services URL
      * @param url Member services URL of the form: "grpc://host:port" or "grpcs://host:port"
-     * @param pem
-     * @throws CertificateException
+     * @param pem permission
+     * @throws CertificateException exception
      */
     public void setMemberServicesUrl(String url, String pem) throws CertificateException {
         this.setMemberServices(new MemberServicesImpl(url,pem));
@@ -137,7 +138,7 @@ public class Chain {
 
     /**
      * Get the member service associated this chain.
-     * @returns MemberServices associated with the chain, or undefined if not set.
+     * @return MemberServices associated with the chain, or undefined if not set.
      */
     public MemberServices getMemberServices() {
         return this.memberServices;
@@ -172,6 +173,7 @@ public class Chain {
 
     /**
      * Set prefetch mode to true or false.
+     * @param preFetchMode preFetch
      */
     public void setPreFetchMode(boolean preFetchMode) {
         this.preFetchMode = preFetchMode;
@@ -179,6 +181,7 @@ public class Chain {
 
     /**
      * Determine if dev mode is enabled.
+     * @return
      */
     public boolean isDevMode() {
         return this.devMode;
@@ -186,6 +189,7 @@ public class Chain {
 
     /**
      * Set dev mode to true or false.
+     * @param devMode devMode
      */
     public void setDevMode(boolean devMode) {
         this.devMode = devMode;
@@ -193,6 +197,7 @@ public class Chain {
 
     /**
      * Get the deploy wait time in seconds.
+     * @return
      */
     public int getDeployWaitTime() {
         return this.deployWaitTime;
@@ -224,7 +229,7 @@ public class Chain {
 
     /**
      * Get the key val store implementation (if any) that is currently associated with this chain.
-     * @returnsThe current KeyValStore associated with this chain, or undefined if not set.
+     * @return The current KeyValStore associated with this chain, or undefined if not set.
      */
     public KeyValStore getKeyValStore() {
         return this.keyValStore;
@@ -232,6 +237,7 @@ public class Chain {
 
     /**
      * Set the key value store implementation.
+     * @param keyValStore keyValStore 
      */
     public void setKeyValStore(KeyValStore keyValStore) {
         this.keyValStore = keyValStore;
@@ -239,6 +245,7 @@ public class Chain {
 
     /**
      * Get the tcert batch size.
+     * @return
      */
     public int getTCertBatchSize() {
         return this.tcertBatchSize;
@@ -246,6 +253,7 @@ public class Chain {
 
     /**
      * Set the tcert batch size.
+     * @param batchSize batch size
      */
     public void setTCertBatchSize(int batchSize) {
         this.tcertBatchSize = batchSize;
@@ -261,6 +269,8 @@ public class Chain {
 
     /**
      * Set and connect to the peer to be used as the event source.
+     * @param peerUrl peerUrl
+     * @param pem permission
      */
     public void eventHubConnect(String peerUrl, String pem) {
         this.eventHub.setPeerAddr(peerUrl, pem);
@@ -276,6 +286,7 @@ public class Chain {
 
     /**
      * Get the member with a given name
+     * @param name name of the member
      * @return member
      */
     public Member getMember(String name) {
@@ -297,6 +308,8 @@ public class Chain {
      * Get a user.
      * A user is a specific type of member.
      * Another type of member is a peer.
+     * @param name name of the user
+     * @return
      */
     Member getUser(String name) {
         return getMember(name);
@@ -307,6 +320,7 @@ public class Chain {
      * Register a user or other member type with the chain.
      * @param registrationRequest Registration information.
      * @throws RegistrationException if the registration fails
+     * @return
      */
     public Member register(RegistrationRequest registrationRequest) throws RegistrationException {
         Member member = getMember(registrationRequest.getEnrollmentID());

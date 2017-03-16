@@ -41,8 +41,9 @@ public class TCertGetter {
 
     /**
     * Constructor for a member.
-    * @param cfg {string | RegistrationRequest} The member name or registration request.
-    * @returns {Member} A member who is neither registered nor enrolled.
+    * @param member member
+    * @param attrs 
+    * @param key
     */
     public TCertGetter(Member member, List<String> attrs, String key) {
         this.member = member;
@@ -55,7 +56,7 @@ public class TCertGetter {
 
     /**
     * Get the chain.
-    * @returns {Chain} The chain.
+    * @return {Chain} The chain.
     */
     public Chain getChain() {
         return this.chain;

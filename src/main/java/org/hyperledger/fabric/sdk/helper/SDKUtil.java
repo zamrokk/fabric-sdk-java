@@ -116,7 +116,7 @@ public class SDKUtil {
 	}
 
 	/**
-	 * Compress the given directory <src> to <target> tar.gz file
+	 * Compress the given directory src to target tar.gz file
 	 * @param src The source directory
 	 * @param target The target tar.gz file
 	 * @throws IOException
