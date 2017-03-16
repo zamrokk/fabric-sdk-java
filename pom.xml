@@ -4,9 +4,24 @@
   <groupId>me.reactiv.fabric-java-sdk</groupId>
   <artifactId>fabric-java-sdk</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.6.6</version>
   <name>fabric-java-sdk</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/zamrokk/fabric-sdk-java</url>
+  <description>This is a fork of Hyperledger Fabric fabric-sdk-java. Compatible Fabric V0.6.1-preview</description>
+  <developers>
+  	<developer>
+  		<name>Benjamin Fuentes</name>
+  		<email>zamrokk@gmail.com</email>
+  	</developer>
+  </developers>
+  <licenses>
+  	<license>
+  		<name>Apache License 2.0</name>
+  	</license>
+  </licenses>
+  <scm>
+  	<url>https://github.com/zamrokk/fabric-sdk-java</url>
+  </scm>
 <properties>
     <grpc.version>0.15.0</grpc.version><!-- CURRENT_GRPC_VERSION -->
     <bouncycastle.version>1.55</bouncycastle.version>
@@ -37,7 +52,7 @@
 	<dependency>
 	    <groupId>com.google.protobuf</groupId>
 	    <artifactId>protobuf-java</artifactId>
-	    <version>3.1.0</version>
+	    <version>3.0.2</version>
 	</dependency>	    
     <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
 	<dependency>
@@ -108,21 +123,69 @@
         </configuration>
       </plugin>
       
-          <plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>install</phase>
-                <goals>
-                  <goal>copy-dependencies</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
+    
+      
+      
+         <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <version>2.3</version>
+      <configuration>
+          <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+      </configuration>
+      <executions>
+          <execution>
+              <phase>package</phase>
+              <goals>
+                  <goal>single</goal>
+              </goals>
+          </execution>
+      </executions>
+  </plugin>
+  <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-source-plugin</artifactId>
+      <version>2.1.2</version>
+      <executions>
+          <execution>
+              <id>attach-sources</id>
+              <goals>
+                  <goal>jar</goal>
+              </goals>
+          </execution>
+      </executions>
+  </plugin>
+ 
+  <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-gpg-plugin</artifactId>
+      <configuration>
+    	<useAgent>true</useAgent>
+  	  </configuration>
+      <executions>
+          <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                  <goal>sign</goal>
+              </goals>
+          </execution>
+      </executions>
+  </plugin>
       
     </plugins>
   </build>
+  
+<distributionManagement>
+  <snapshotRepository>
+    <id>ossrh</id>
+    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  </snapshotRepository>
+  <repository>
+    <id>ossrh</id>
+    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+  </repository>
+</distributionManagement>
+  
 </project>

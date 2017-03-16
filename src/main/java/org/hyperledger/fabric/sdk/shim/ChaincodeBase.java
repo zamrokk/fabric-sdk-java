@@ -34,8 +34,6 @@ import org.hyperledger.protos.Chaincode.ChaincodeMessage;
 import org.hyperledger.protos.Chaincode.ChaincodeMessage.Type;
 import org.hyperledger.protos.ChaincodeSupportGrpc;
 import org.hyperledger.protos.ChaincodeSupportGrpc.ChaincodeSupportStub;
-import org.hyperledger.protos.Chaincodeevent.ChaincodeEvent;
-import org.hyperledger.protos.Fabric.Message;
 
 import javax.net.ssl.SSLException;
 import java.io.File;
@@ -225,11 +223,5 @@ public abstract class ChaincodeBase {
 			ret = ByteString.copyFromUtf8(query(stub, function, args));
 		}
 		return ret;
-	}
-	
-	public void sendChaincodeEvent(ChaincodeEvent chaincodeEvent){
-		handler.sendChannel(ChaincodeMessage.newBuilder()  //
-				.setChaincodeEvent(chaincodeEvent)
-				.build());
 	}
 }
